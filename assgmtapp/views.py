@@ -48,8 +48,9 @@ def userlogout(request):
     return redirect('login')
 
 def view(request):
-    cr = crud.objects.all()
-    return render(request,"view.html",{'cm':cr})
+    user_id = request.session.get('id')
+    cr = crud.objects.get(id=user_id)  
+    return render(request, "view.html", {'cm': cr})
 
 def update(request,pk):
     cr = crud.objects.get(id = pk)
@@ -65,7 +66,3 @@ def delete(request,pk):
     cr = crud.objects.get(id = pk)
     cr.delete()
     return redirect("view")
-
-def detailview(request,pk):
-    cr = crud.objects.get(id=pk)
-    return render(request,"detailview.html",{'cm':cr})

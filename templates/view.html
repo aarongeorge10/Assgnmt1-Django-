@@ -4,42 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>User Details</title>
 </head>
 
 <body>
 
-    <form action="">
-        {% csrf_token %}
-        <table border="2">
-            <tr>
-                <th>LIST NO </th>
-                <th>NAME </th>
-                <th>AGE </th>
-                <th>USERNAME</th>
-                <th>PASSWORD</th>
+    <table border="2">
+        <tr>
+            <th>LIST NO</th>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>USERNAME</th>
+            <th>PASSWORD</th>
+            <th colspan="3">ACTIONS</th>
+        </tr>
 
-            </tr>
+        <tr>
+            <!-- you can use 1 or cm.id as list number -->
+            <td>1</td>
+            <td>{{ cm.name }}</td>
+            <td>{{ cm.age }}</td>
+            <td>{{ cm.username }}</td>
+            <td>{{ cm.password }}</td>
 
-            {% for i in cm %}
-            <tr>
-                <td>{{ i.id }}</td>
-                <td>{{ i.name }}</td>
-                <td>{{ i.age }}</td>
-                <td>{{ i.username }}</td>
-                <td>{{ i.password }}</td>
-                <td><a href="{% url 'update' i.id %}" class="btn btn-danger">UPDATE</a></td>
-                <td><a href="{% url 'delete' i.id %}" class="btn btn-danger">DELETE</a></td>
-                <td><a href="{% url 'detailview' i.id %}" class="btn btn-danger">VIEW</a></td>
-            </tr>
-            {% endfor i %}
-
-        </table>
-    </form>
+            <!-- ✅ pass primary key to urls -->
+            <td><a href="{% url 'update' cm.id %}" class="btn btn-danger">UPDATE</a></td>
+            <td><a href="{% url 'delete' cm.id %}" class="btn btn-danger">DELETE</a></td>
+        </tr>
+    </table>
 
     <br>
     <a href="{% url 'logindetail' %}">Main Page</a>
-
 
 </body>
 

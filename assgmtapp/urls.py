@@ -12,5 +12,4 @@ urlpatterns = [
     path('views/',views.view,name="view"),
     path('update/<str:pk>',views.update,name="update"),
     path('delete/<str:pk>',views.delete,name="delete"),
-    path('detailview/<str:pk>',views.detailview,name="detailview"),
 ]
